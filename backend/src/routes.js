@@ -1,5 +1,7 @@
 const express = require('express');
 const SessionController = require('./controllers/SessionController')
+const SpotController = require('./controllers/SpotController')
+
 
 //chamando o responsavel pelas rotas e separando dentro de uma variável
 //dento dessa variável temos todos os metodos ex routes.post
@@ -17,6 +19,7 @@ routes.put('/users/:id', (req, res) => {
 
 routes.post('/sessions', SessionController.store);
 
+routes.post('/spots', SpotController.store);
 
 
 module.exports = routes;

@@ -9,5 +9,5 @@ const UserSchema = new mongoose.Schema({
 });
 
 // agora precisa exportar esse model daqui de denrtro
-module.exports = mongoose.model('User',UserSchema); //nesse momento também criei o module
+module.exports = mongoose.model('User',UserSchema); //nesse momento também cria o module
 // a partir desse momento o mongoDB ja sabe que quando for criar um usuario, o usuario tem apenas um campo de email
