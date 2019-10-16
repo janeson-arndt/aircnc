@@ -1,6 +1,9 @@
 const express = require('express');
 const SessionController = require('./controllers/SessionController');
 const SpotController = require('./controllers/SpotController');
+const DashboardController = require('./controllers/DashboardController');
+
+
 const multer = require('multer');
 const uploadConfig = require('./config/upload');
 
@@ -20,7 +23,9 @@ routes.put('/users/:id', (req, res) => {
 
 routes.post('/sessions', SessionController.store);
 
-routes.post('/spot',upload.single('thumbnail'), SpotController.store);
+routes.get('/spots', SpotController.index);
+routes.post('/spots',upload.single('thumbnail'), SpotController.store);
 
+routes.get('/dashboard', DashboardController.show);
 
 module.exports = routes;
