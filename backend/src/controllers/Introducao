@@ -1,1 +1,9 @@
 controller é onde basicamente ficam as regras de negocio da aplicacao
+
+//controles de sessão tudo relacionado, login, logout
+// metodos que podem ter em um controller:
+// index - retorna uma listagem, nesse caso de sessões
+// show - lista uma únida sessao
+// store - criar uma sessao
+// update - alterar uma sessao
+// destroy - deletar uma sessao

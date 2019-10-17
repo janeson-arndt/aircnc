@@ -2,6 +2,7 @@ const express = require('express');
 const SessionController = require('./controllers/SessionController');
 const SpotController = require('./controllers/SpotController');
 const DashboardController = require('./controllers/DashboardController');
+const BookingsController = require('./controllers/BookingController');
 
 
 const multer = require('multer');
@@ -27,5 +28,7 @@ routes.get('/spots', SpotController.index);
 routes.post('/spots',upload.single('thumbnail'), SpotController.store);
 
 routes.get('/dashboard', DashboardController.show);
+
+routes.post('/spots/:spot_id/bookings', BookingsController.store)//usurio esta querendo criar uma reserva dentro desse spot com esse id
 
 module.exports = routes;
