@@ -12,7 +12,7 @@ html, body, #root {
 }
 
 body {
-  background: #000 url('./assests/background.jpeg') no-repeat;
+  background: #000 url('./assests/escritorio3.jpg') no-repeat;
   background-size: cover;
   /* propriedade que deixa nossa fonte mais detalhada */
   -webkit-font-smoothing: antialiased !important; 
@@ -35,8 +35,56 @@ body, input, button {
 .content {
   width: 100%;
   background: #fff;
-  margin-top: 50px;
+  margin-top: -30px;
   border-radius: 4px;
   padding: 30px;
 }
 
+.content > p {
+  font-size: 22;
+  line-height: 30px;
+  margin-bottom: 30px;
+}
+
+.content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.content form label{
+  font-size: 14px;
+  color: #444;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.content form input {
+  margin-bottom: 20px;
+  border: solid 1px #ddd;
+  border-radius: 2px;
+  height: 45px;
+  padding: 0 15px;
+  font-size: 16px;
+}
+
+.content button.btn {
+  border: 0;
+  border-radius: 2px;
+  width: 100%;
+  height: 42px;
+  padding: 0 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #f05a5b;
+  color: #fff;
+  cursor: pointer;
+}
+
+.logo {
+  height: inherit;
+  width: inherit;
+}
+
+.content button.btn:hover {
+  background: #e14f50;
+}
