@@ -1,22 +1,42 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+/* para fazer o fundo da aplicação ocupar a tela toda*/
+html, body, #root {
+  min-height: 100%; 
 }
 
-.App-logo {
-  height: 40vmin;
+body {
+  background: #000 url('./assests/background.jpeg') no-repeat;
+  background-size: cover;
+  /* propriedade que deixa nossa fonte mais detalhada */
+  -webkit-font-smoothing: antialiased !important; 
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body, input, button {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.container {
+  margin: 80px auto 0;
+  max-width: 450px;
+  width: 100%; /* se conteudo tiver menos de 450px ele tenta ocupar a largura inteira, se tiver mais ele fica 450px */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #09d3ac;
+.content {
+  width: 100%;
+  background: #fff;
+  margin-top: 50px;
+  border-radius: 4px;
+  padding: 30px;
 }
+
