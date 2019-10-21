@@ -1,6 +1,7 @@
 const express = require('express'); /*Importar uma dependeencia externa*/
 const mongoose = require('mongoose');
 const routes = require('./routes');
+const cors = require('cors');
 
 const app = express();
 
@@ -19,7 +20,7 @@ mongoose.connect('mongodb://janeson_arndt:Melbourne1@omnistack-shard-00-00-f5ejz
 // req.params = acessar route params (para edição, delete)
 // req.body = acessar o corpo da requisição  (para criação, edição)
 
-
+app.use(cors());
 app.use(express.json()); //por padrão o express nao entende o formato JSON, tenho que informar para ele
 app.use(routes);
 
