@@ -27,8 +27,9 @@ export default function Dashboard() {
                     //tag header em vez da tag img para deixar as imagens pequenas e no mesmo tamanho padrão
                     //tag strong retorna a empresa
                     //tag span retorna o preço
+                    // tag header a primeira { indica que quero incluir um codigo JS no meu codigo e a segunda { indica que estou querendo incluir um objeto
                     <li key={spot._id}>
-                        <header>
+                        <header style={{ backgroundImage: `url(${spot.thumbnail_url})`}}> 
                         </header>
                         <strong>{spot.company}</strong>
                         <span>{spot.price}</span>

@@ -2,6 +2,7 @@ const express = require('express'); /*Importar uma dependeencia externa*/
 const mongoose = require('mongoose');
 const routes = require('./routes');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 
@@ -22,6 +23,8 @@ mongoose.connect('mongodb://janeson_arndt:Melbourne1@omnistack-shard-00-00-f5ejz
 
 app.use(cors());
 app.use(express.json()); //por padrão o express nao entende o formato JSON, tenho que informar para ele
+// quando o usuario acessar a rota files, o express retorna um arquivo statico (pdf, imagem)> _dirname retorna o diretório onde o server.js esta
+app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads')));// volta uma pasta e entra na pasta uploads
 app.use(routes);
 
 // para devolver a resposta, o tipo de resposta mais simples é o send para envio de um texto

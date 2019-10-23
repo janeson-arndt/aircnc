@@ -13,7 +13,18 @@ const SpotSchema = new mongoose.Schema({
     }
     //age: Number,
    //active: Boolean,
+}, {
+    // Essa parte precisa para que toda vez que um Spot é convertido para JSON eu quero que os Virtual sejam incluídos também
+    toJSON: { 
+        virtuals: true,
+    }
 });
+
+//CRIAR UM CAMPO NO BANCO PELO JS, dentro do MongoDB isso é chamdo de VIRTUAL
+SpotSchema.virtual('thumbnail_url').get(function(){
+    return `http://localhost:3333/files/${this.thumbnail}`
+})
+
 
 // agora precisa exportar esse model daqui de denrtro
 module.exports = mongoose.model('Spot',SpotSchema); //nesse momento também criei o module
