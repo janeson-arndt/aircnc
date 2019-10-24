@@ -1,5 +1,14 @@
 import React from 'react';
 
 export default function New() {
-    return <div></div>
+    function handleSubmit() {
+
+    }
+
+    return (
+        <form onSubmit={handleSubmit}>
+
+        </form>
+    
+    )
 }

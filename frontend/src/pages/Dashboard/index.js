@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'; //useState para usar o localStorage
 import api from '../../services/api';
 
+import { Link } from 'react-router-dom'
+
+import './styles.css';
+
 export default function Dashboard() {
     //cria um estado
     // const [ nomeDoEstado, funcaoParaAtualizarEstado ] = useStage([]), como a info vem do meu back em formato de lista/array é recomendado iniciar com uma lista vazia
@@ -28,14 +32,19 @@ export default function Dashboard() {
                     //tag strong retorna a empresa
                     //tag span retorna o preço
                     // tag header a primeira { indica que quero incluir um codigo JS no meu codigo e a segunda { indica que estou querendo incluir um objeto
+                    // tag span com IF ternario > IF = <span>{spot.price > THEN = ? `R$${spot.price}/dia` > ELSE = : `GRATUITO`}</span>
                     <li key={spot._id}>
                         <header style={{ backgroundImage: `url(${spot.thumbnail_url})`}}> 
                         </header>
                         <strong>{spot.company}</strong>
-                        <span>{spot.price}</span>
-                    </li>
+                        <span>{spot.price ? `R$${spot.price}/dia` : `GRATUÍTO`}</span>
+                    </li> 
                 ))}
             </ul>
+
+            <Link to='/new'>
+                <button className='btn'>Cadastrar novo spot</button> 
+            </Link>
         </>
     )
 }
