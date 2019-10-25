@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import camera from '../../assests/camera.svg';
+import camera from '../../assests/instagram.svg';
 
 import './styles.css';
 
@@ -8,7 +8,7 @@ import './styles.css';
 export default function New() {
     const [company, setCompany] = useState('');
     const [techs, setTechs] = useState('');
-    const [price, setPrice] = useState('');    
+    const [price, setPrice] = useState('');
 
     function handleSubmit() {
 
@@ -17,26 +17,26 @@ export default function New() {
     return (
         <form onSubmit={handleSubmit}>
             <label id='thumbnail'>
-                <input type='file'/>
-                <img src={camera} alt="Select img"/>
-                </label>
+                <input type='file' />
+                <img src={camera} alt="Select img" />
+            </label>
 
             <label htmlFor="company">EMPRESA *</label>
-            <input 
+            <input
                 id='company'
                 placeholder='Sua empresa incrível'
                 value={company}
                 onChange={event => setCompany(event.target.value)}
             />
-             <label htmlFor="company">TECNOLOGIAS *</label>
-            <input 
+            <label htmlFor="company">TECNOLOGIAS *</label>
+            <input
                 id='techs'
                 placeholder='Quais tecnologias usam?'
                 value={techs}
                 onChange={event => setTechs(event.target.value)}
             />
-             <label htmlFor="company">VALOR DA DIÁRIA *<span> (em branco para GRATUÍTO)</span></label>
-            <input 
+            <label htmlFor="company">VALOR DA DIÁRIA *<span> (em branco para GRATUÍTO)</span></label>
+            <input
                 id='price'
                 placeholder='Valor cobrado por dia'
                 value={price}
@@ -45,6 +45,6 @@ export default function New() {
 
             <button type="submit" className='btn'>Cadastrar</button>
         </form>
-    
     )
+
 }
