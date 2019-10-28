@@ -6,6 +6,8 @@ export default function Login({ history }) {
     // cria um elemento adicional que pode afetar a estilização, caso tenha alguma estilização aplicada ao p com uma div adicional não pega mais a estilização do p
     // Para resolver isso, o react permite utilizar tags vazias '<> </>'
     const [email, setEmail] = useState('');
+
+    
     //funcionamento padrão do formulário quando clica em submit é enviar o usuário para outra tela, a parte de preventDefault é para prever isso
     async function handleSubmit(event) {
         event.preventDefault();
