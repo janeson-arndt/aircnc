@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, AsyncStorage, KeyboardAvoidingView, Image, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 //TouchableOpacity - Para dar uma opacidade ao clicar no botão
 //KeyboardAvoidingView com a propriedade behavior='padding' - para ajustar a tela quando se abre o teclado, caso contrario o teclado fica por cima de tudo
 // AsyncStorage - base local do dispositivo, como o LocalStorage da web
+// 
 import api from '../services/api';
 
 import logo from '../assets/icon51.png';
@@ -10,6 +11,14 @@ import logo from '../assets/icon51.png';
 export default function Login({ navigation }) {
     const [email, setEmail] = useState(''); //armazena no state as informações das variáveis
     const [techs, setTechs] = useState('');
+// useEffect realiza uma ação assim que o usuario chegar nessa tela
+    useEffect(() => {
+        AsyncStorage.getItem('user').then(user => { // vai tentar buscar uma propriedade user, se encontrar vai colocar o valor dentro da variavel user depois do then
+            if (user) {
+                navigation.navigate('List') // se sim, navega diretamente para a rota list
+            }
+        })
+    }, []);
 
     async function handleSubmit() {
         //email, techs
