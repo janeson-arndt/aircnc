@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-
+import { withNavigation } from 'react-navigation';
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
+// /FlatList - componente para listas
 import api from '../services/api'
+
 
 //props recebe todas as propriedades
 /* Posso usar o conceito de desestruturação, informando a propriedade entre parenteses e chamado ela depois
 export default function SpotList({tech}) {
     return <Text>{tech}</Text> */
-export default function SpotList({ tech }) {
+function SpotList({ tech, navigation }) {
     const [spots, setSpots] = useState([]);
 
     useEffect(() => {
@@ -22,14 +24,38 @@ export default function SpotList({ tech }) {
         loadSpots();
     }, []);
 
+    function handleNavigate() {
+        navigation.navigate('Book');
+    }
+
     return (<View style={styles.container}>
         <Text style={styles.title}>Empresas que usam <Text style={styles.bold}>{tech}</Text></Text>
 
+        <FlatList
+            style={styles.list}
+            data={spots} // de onde vem os dados
+            keyExtractor={spot => spot.id}//informar a chave unica, retorna uma funcao que recebe o espot e retorna qual campo no spot é unico
+            horizontal
+            showsHorizontalScrollIndicator={false}//para mostrar ou não a barra de rolagem na horizontal
+            renderItem={({ item }) => (
+                //se na Image colocar apenas source={item.thumbnail_url} ele vai tentar achar uma imagens nos arquivos fisicos não um link externo de ond evem as imagens
+                //{item.price ? `R$${item.price}/dia` : 'GRATUITO'} se o item tiver preço mostra o preço por dia, senão mostra gratuito
+                <View style={styles.listItem}>
+                    <Image style={styles.thumbnail} source={{ uri: item.thumbnail_url }}></Image>
+                    <Text style={styles.company}>{item.company}</Text>
+                    <Text style={styles.price}>{item.price ? `R$${item.price}/dia` : 'GRATUITO'}</Text>
+                    <TouchableOpacity onPress={handleNavigate} style={styles.button}>
+                        <Text style={styles.buttonText}>Solicitar reserva</Text>
+                    </TouchableOpacity>
+                </View>
+            )}//como deve se comportar para mostrar cada itens da lista, ta,bém é uma função
+        >
+        </FlatList>
     </View>) //retorna o valor da propriedade tech do elemento que possuir essa propriedade
 }
 
-const styles = StyleSheet.create ({
-    container:{
+const styles = StyleSheet.create({
+    container: {
         marginTop: 30,
     },
     title: {
@@ -40,5 +66,44 @@ const styles = StyleSheet.create ({
     },
     bold: {
         fontWeight: 'bold',
-    }
+    },
+    list: {
+        paddingHorizontal: 20,
+    },
+    listItem: {
+        marginRight: 15,
+    },
+    thumbnail: {
+        width: 200,
+        height: 120,
+        resizeMode: 'cover',
+        borderRadius: 2,
+    },
+    company: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#333',
+        marginTop: 10,
+    },
+    price: {
+        fontSize: 15,
+        color: '#999',
+        marginTop: 5,
+    },
+    button: {
+        height: 32,
+        backgroundColor: '#f05a5b',
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 2,
+        marginTop: 15,
+    },
+    buttonText: {
+        color: '#FFF',
+        fontWeight: 'bold',
+        fontSize: 15,
+    },
+
 });
+
+export default withNavigation(SpotList);

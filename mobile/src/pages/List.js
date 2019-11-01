@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, StyleSheet, AsyncStorage, Image } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, AsyncStorage, Image } from 'react-native';
 //SafeAreaView mostra o conteúdo apenas na area segura para ser mostrado, exemplo não vai mostrar atras da hora ou do mostrador da bateria
+// ScrollView scroll vertical, basta colocar em volta do componente
 
 import logo from '../assets/logo48px.png';
 
@@ -26,11 +27,11 @@ export default function List() {
         <SafeAreaView style={styles.container}>
             <Image style={styles.logo} source={logo} />
 
+            <ScrollView>
+                {techs.map(tech => <SpotList key={tech} tech={tech} />
 
-            {techs.map(tech =>  <SpotList key={tech} tech={tech} />
-            
-            )}
-
+                )}
+            </ScrollView>
         </SafeAreaView>
     )
 }
