@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { withNavigation } from 'react-navigation';
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
+
 // /FlatList - componente para listas
-import api from '../services/api'
+import api from '../services/api';
 
 
 //props recebe todas as propriedades
@@ -18,6 +19,8 @@ function SpotList({ tech, navigation }) {
                 params: { tech }
             })
 
+            //console.log(response.thumbnail_url);
+
             setSpots(response.data);
         }
 
@@ -28,29 +31,33 @@ function SpotList({ tech, navigation }) {
         navigation.navigate('Book', { id });
     }
 
-    return (<View style={styles.container}>
+    return (
+    <View style={styles.container}>
         <Text style={styles.title}>Empresas que usam <Text style={styles.bold}>{tech}</Text></Text>
 
         <FlatList
             style={styles.list}
             data={spots} // de onde vem os dados
-            keyExtractor={spot => spot.id}//informar a chave unica, retorna uma funcao que recebe o espot e retorna qual campo no spot é unico
+            keyExtractor={spot => spot._id}//informar a chave unica, retorna uma funcao que recebe o espot e retorna qual campo no spot é unico
             horizontal
             showsHorizontalScrollIndicator={false}//para mostrar ou não a barra de rolagem na horizontal
             renderItem={({ item }) => (
                 //se na Image colocar apenas source={item.thumbnail_url} ele vai tentar achar uma imagens nos arquivos fisicos não um link externo de ond evem as imagens
                 //{item.price ? `R$${item.price}/dia` : 'GRATUITO'} se o item tiver preço mostra o preço por dia, senão mostra gratuito
                 <View style={styles.listItem}>
-                    <Image style={styles.thumbnail} source={{ uri: item.thumbnail_url }}></Image>
+
+                    <Image style={styles.thumbnail} source={{ uri: item.thumbnail_url }}/>
                     <Text style={styles.company}>{item.company}</Text>
                     <Text style={styles.price}>{item.price ? `R$${item.price}/dia` : 'GRATUITO'}</Text>
                     <TouchableOpacity onPress={() => handleNavigate(item._id)} style={styles.button}>
                         <Text style={styles.buttonText}>Solicitar reserva</Text>
                     </TouchableOpacity>
+
                 </View>
             )}//como deve se comportar para mostrar cada itens da lista, ta,bém é uma função
         >
         </FlatList>
+
     </View>) //retorna o valor da propriedade tech do elemento que possuir essa propriedade
 }
 

@@ -11,7 +11,9 @@ import logo from '../assets/icon51.png';
 export default function Login({ navigation }) {
     const [email, setEmail] = useState(''); //armazena no state as informações das variáveis
     const [techs, setTechs] = useState('');
+
 // useEffect realiza uma ação assim que o usuario chegar nessa tela
+// Navega o usuario para a rota lista se ele ja tiver logado
     useEffect(() => {
         AsyncStorage.getItem('user').then(user => { // vai tentar buscar uma propriedade user, se encontrar vai colocar o valor dentro da variavel user depois do then
             if (user) {

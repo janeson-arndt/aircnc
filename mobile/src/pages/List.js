@@ -5,8 +5,9 @@ import { SafeAreaView, ScrollView, StyleSheet, AsyncStorage, Image } from 'react
 
 import logo from '../assets/logo48px.png';
 
-import SpotList from '../components/SpotList'
+import SpotList from '../components/SpotList';
 
+// busca as tecnologias salvas no local storage - no ReactNative é o componente UseState
 export default function List() {
     const [techs, setTechs] = useState([]); // recebe array vazio
 
@@ -28,9 +29,7 @@ export default function List() {
             <Image style={styles.logo} source={logo} />
 
             <ScrollView>
-                {techs.map(tech => <SpotList key={tech} tech={tech} />
-
-                )}
+                {techs.map(tech => <SpotList key={tech} tech={tech} />)}
             </ScrollView>
         </SafeAreaView>
     )
@@ -40,10 +39,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+
     logo: {
         height: 32,
         resizeMode: "contain", //que o conteudo da imagem fique no espaço disponível
         alignSelf: "center",
         marginTop: 38,
-    }
+    },
 });
